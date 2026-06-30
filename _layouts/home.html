@@ -40,8 +40,6 @@ layout: default
     <article class="featured-post">
       {% if featured.image %}
         <img class="featured-image" src="{{ featured.image | relative_url }}" alt="{{ featured.title }}">
-      {% else %}
-        <div class="featured-image-placeholder swatch-navy"></div>
       {% endif %}
       <div class="featured-body">
         {% if featured.category %}
