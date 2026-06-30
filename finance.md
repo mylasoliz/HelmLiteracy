@@ -14,7 +14,9 @@ permalink: /finance/
 
   <div class="page-body">
     <div class="container container-narrow">
-      {% assign finance_posts = site.posts | where_exp: "post", "post.category contains 'Finance'" %}{% assign investing_posts = site.posts | where_exp: "post", "post.category contains 'Investing'" %}{% assign finance_posts = finance_posts | concat: investing_posts %}
+      {% assign finance_posts = site.posts | where_exp: "post", "post.category contains 'Finance'" %}
+      {% assign investing_posts = site.posts | where_exp: "post", "post.category contains 'Investing'" %}
+      {% assign finance_posts = finance_posts | concat: investing_posts %}
       {% if finance_posts.size > 0 %}
         <ul class="category-post-list">
           {% for post in finance_posts %}
