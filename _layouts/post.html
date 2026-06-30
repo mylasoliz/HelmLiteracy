@@ -4,28 +4,30 @@ layout: default
 
 <article class="post-full">
   <header class="post-header">
-    <div class="container">
+    <div class="container-narrow">
       {% if page.category %}
       <div class="post-category">{{ page.category }}</div>
       {% endif %}
       <h1 class="post-title">{{ page.title }}</h1>
       <div class="post-meta">
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-        {% if page.read_time %}<span>· {{ page.read_time }} min read</span>{% endif %}
-        {% if page.author %}<span>· by {{ page.author }}</span>{% endif %}
+        {% if page.read_time %}<span>&middot;</span><span>{{ page.read_time }} min read</span>{% endif %}
+        {% if page.author %}<span>&middot;</span><span>{{ page.author }}</span>{% endif %}
       </div>
     </div>
   </header>
 
   <div class="post-body">
-    <div class="container container-narrow">
+    <div class="container-narrow">
       {{ content }}
 
+      {% if page.tags.size > 0 %}
       <div class="post-tags">
         {% for tag in page.tags %}
         <span class="tag">{{ tag }}</span>
         {% endfor %}
       </div>
+      {% endif %}
 
       <nav class="post-nav">
         {% if page.previous.url %}

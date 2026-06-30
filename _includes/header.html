@@ -1,13 +1,14 @@
 <header class="site-header">
-  <div class="container header-inner">
-    <a class="site-logo" href="{{ '/' | relative_url }}">
-      <span class="logo-helm">⛵</span>
-      <span class="logo-text">HelmLiteracy</span>
-    </a>
-    <nav class="site-nav">
-      <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
-      <a href="{{ '/categories' | relative_url }}" class="nav-link">Categories</a>
-      <a href="{{ '/about' | relative_url }}" class="nav-link">About</a>
-    </nav>
+  <div class="header-top">
+    <a class="site-logo" href="{{ '/' | relative_url }}">HelmLiteracy</a>
+    <div class="header-actions">
+      <span class="header-icon">🔍</span>
+      <a href="{{ '/feed.xml' | relative_url }}" class="btn-subscribe">Subscribe</a>
+    </div>
   </div>
+  <nav class="site-nav">
+    <a href="{{ '/' | relative_url }}" class="nav-link{% if page.url == '/' %} active{% endif %}">Home</a>
+    <a href="{{ '/categories' | relative_url }}" class="nav-link{% if page.url contains 'categories' %} active{% endif %}">Archive</a>
+    <a href="{{ '/about' | relative_url }}" class="nav-link{% if page.url contains 'about' %} active{% endif %}">About</a>
+  </nav>
 </header>

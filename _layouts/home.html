@@ -2,78 +2,113 @@
 layout: default
 ---
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">Financial &amp; AI Literacy</div>
-    <h1 class="hero-title">Take the Helm of Your Financial Future</h1>
-    <p class="hero-subtitle">Practical guides, honest breakdowns, and real tools to help you master money and artificial intelligence — no jargon, no fluff.</p>
-    <div class="hero-cta">
-      <a href="#posts" class="btn btn-primary">Read the Blog</a>
-      <a href="{{ '/about' | relative_url }}" class="btn btn-secondary">About</a>
-    </div>
-  </div>
-</section>
+{% assign posts = site.posts %}
+{% assign featured = posts[0] %}
+{% assign left_posts = posts | slice: 1, 2 %}
+{% assign sidebar_posts = posts | slice: 0, 5 %}
+{% assign secondary_posts = posts | slice: 3, 3 %}
 
-<section class="topics">
-  <div class="container">
-    <h2 class="section-title">What We Cover</h2>
-    <div class="topic-grid">
-      <div class="topic-card">
-        <div class="topic-icon">💰</div>
-        <h3>Personal Finance</h3>
-        <p>Budgeting, investing, debt payoff, credit scores, and building long-term wealth.</p>
-      </div>
-      <div class="topic-card">
-        <div class="topic-icon">🤖</div>
-        <h3>AI Tools</h3>
-        <p>How to use AI tools productively — for work, learning, research, and everyday life.</p>
-      </div>
-      <div class="topic-card">
-        <div class="topic-icon">📊</div>
-        <h3>Investing Basics</h3>
-        <p>Stocks, ETFs, index funds, retirement accounts — explained for beginners.</p>
-      </div>
-      <div class="topic-card">
-        <div class="topic-icon">🧠</div>
-        <h3>AI Literacy</h3>
-        <p>Understand how AI works, its limitations, and how to think critically about it.</p>
-      </div>
-    </div>
-  </div>
-</section>
+{% assign swatches = "swatch-navy,swatch-red,swatch-chive,swatch-cocoa,swatch-blue,swatch-reseda,swatch-yellow" | split: "," %}
 
-<section class="posts-section" id="posts">
-  <div class="container">
-    <h2 class="section-title">Latest Posts</h2>
-    <div class="post-grid">
-      {% for post in paginator.posts %}
-      <article class="post-card">
-        {% if post.category %}
-        <div class="post-category">{{ post.category }}</div>
+<div class="magazine-grid">
+
+  <!-- Left column: 2 small cards -->
+  <div class="col-left">
+    {% for post in left_posts %}
+    {% assign swatch = swatches[forloop.index] %}
+    <article class="post-card-sm">
+      {% if post.image %}
+        <img class="post-thumb" src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+      {% else %}
+        <div class="post-thumb-placeholder {{ swatch }}"></div>
+      {% endif %}
+      <div class="post-card-sm-meta">
+        {% if post.category %}<span>{{ post.category }}</span><span class="meta-dot">·</span>{% endif %}
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b" }}</time>
+      </div>
+      <h2 class="post-card-sm-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h2>
+      <p class="post-card-sm-excerpt">{{ post.excerpt | strip_html }}</p>
+    </article>
+    {% endfor %}
+  </div>
+
+  <!-- Center: featured post -->
+  <div class="col-center">
+    {% if featured %}
+    <article class="featured-post">
+      {% if featured.image %}
+        <img class="featured-image" src="{{ featured.image | relative_url }}" alt="{{ featured.title }}">
+      {% else %}
+        <div class="featured-image-placeholder swatch-navy"></div>
+      {% endif %}
+      <div class="featured-body">
+        {% if featured.category %}
+        <div class="featured-category">{{ featured.category }}</div>
         {% endif %}
-        <h2 class="post-card-title">
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        </h2>
-        <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-        <div class="post-card-meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
-          {% if post.read_time %}<span class="read-time">· {{ post.read_time }} min read</span>{% endif %}
+        <h1 class="featured-title">
+          <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
+        </h1>
+        <p class="featured-excerpt">{{ featured.excerpt | strip_html }}</p>
+        <div class="featured-meta">
+          <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: "%-d %b %Y" }}</time>
+          {% if featured.read_time %}<span class="meta-dot">·</span><span>{{ featured.read_time }} min read</span>{% endif %}
         </div>
-        <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
-      </article>
-      {% endfor %}
-    </div>
-
-    {% if paginator.total_pages > 1 %}
-    <nav class="pagination">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-prev">← Newer</a>
-      {% endif %}
-      <span class="pagination-info">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-next">Older →</a>
-      {% endif %}
-    </nav>
+      </div>
+    </article>
     {% endif %}
   </div>
-</section>
+
+  <!-- Right: Most Popular sidebar -->
+  <div class="col-right">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Most Popular</span>
+      <a href="{{ '/categories' | relative_url }}" class="sidebar-view-all">View All</a>
+    </div>
+    {% for post in sidebar_posts %}
+    {% assign sw = swatches[forloop.index0] %}
+    <article class="sidebar-post">
+      <div class="sidebar-post-text">
+        <h3 class="sidebar-post-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h3>
+        <div class="sidebar-post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b" }}</time>
+          {% if post.category %} &middot; {{ post.category }}{% endif %}
+        </div>
+      </div>
+      {% if post.image %}
+        <img class="sidebar-thumb" src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+      {% else %}
+        <div class="sidebar-thumb-placeholder {{ sw }}"></div>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% if secondary_posts.size > 0 %}
+<div class="section-divider">
+  <span class="section-label">More Posts</span>
+  <a href="{{ '/categories' | relative_url }}" class="section-link">View Archive →</a>
+</div>
+
+<div class="secondary-posts">
+  {% for post in secondary_posts %}
+  {% assign sw2 = swatches[forloop.index] %}
+  <article class="post-card-md">
+    <div class="post-card-md-category">{{ post.category }}</div>
+    <h2 class="post-card-md-title">
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
+    <p class="post-card-md-excerpt">{{ post.excerpt | strip_html }}</p>
+    <div class="post-card-md-meta">
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+      {% if post.read_time %} &middot; {{ post.read_time }} min{% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endif %}
