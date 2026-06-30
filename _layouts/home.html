@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Financial &amp; AI Literacy</div>
+    <h1 class="hero-title">Take the Helm of Your Financial Future</h1>
+    <p class="hero-subtitle">Practical guides, honest breakdowns, and real tools to help you master money and artificial intelligence — no jargon, no fluff.</p>
+    <div class="hero-cta">
+      <a href="#posts" class="btn btn-primary">Read the Blog</a>
+      <a href="{{ '/about' | relative_url }}" class="btn btn-secondary">About</a>
+    </div>
+  </div>
+</section>
+
+<section class="topics">
+  <div class="container">
+    <h2 class="section-title">What We Cover</h2>
+    <div class="topic-grid">
+      <div class="topic-card">
+        <div class="topic-icon">💰</div>
+        <h3>Personal Finance</h3>
+        <p>Budgeting, investing, debt payoff, credit scores, and building long-term wealth.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🤖</div>
+        <h3>AI Tools</h3>
+        <p>How to use AI tools productively — for work, learning, research, and everyday life.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">📊</div>
+        <h3>Investing Basics</h3>
+        <p>Stocks, ETFs, index funds, retirement accounts — explained for beginners.</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🧠</div>
+        <h3>AI Literacy</h3>
+        <p>Understand how AI works, its limitations, and how to think critically about it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="posts-section" id="posts">
+  <div class="container">
+    <h2 class="section-title">Latest Posts</h2>
+    <div class="post-grid">
+      {% for post in paginator.posts %}
+      <article class="post-card">
+        {% if post.category %}
+        <div class="post-category">{{ post.category }}</div>
+        {% endif %}
+        <h2 class="post-card-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h2>
+        <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+        <div class="post-card-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+          {% if post.read_time %}<span class="read-time">· {{ post.read_time }} min read</span>{% endif %}
+        </div>
+        <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% if paginator.total_pages > 1 %}
+    <nav class="pagination">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-prev">← Newer</a>
+      {% endif %}
+      <span class="pagination-info">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-next">Older →</a>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </div>
+</section>
