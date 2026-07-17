@@ -7,7 +7,7 @@ author:
   name: HelmLiteracy
 
 # Subscribe form — paste your Formspree endpoint here after signing up at formspree.io
-formspree_endpoint: "https://formspree.io/f/YOUR_FORM_ID"
+formspree_endpoint: "https://formspree.io/f/xpqvppnn"
 
 # Build settings
 theme: minima
