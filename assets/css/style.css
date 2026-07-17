@@ -129,6 +129,21 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-link:hover { color: var(--text); border-bottom-color: var(--border); }
 .nav-link.active { color: var(--text); border-bottom-color: var(--accent); }
 
+/* ===== HOME TAGLINE ===== */
+.home-tagline {
+  text-align: center;
+  padding: 48px 24px 36px;
+  border-bottom: 1px solid var(--border);
+}
+.home-tagline-text {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
 /* ===== HOME MAGAZINE GRID ===== */
 .magazine-grid {
   display: grid;
