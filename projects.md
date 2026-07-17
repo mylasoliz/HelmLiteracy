@@ -14,7 +14,7 @@ permalink: /projects/
 
   <div class="page-body">
     <div class="container container-narrow">
-      <p>Projects coming soon.</p>
+      <p>These are some of my personal projects that demonstrate my technical development. If anything interests you, or if you want to understand better what I did / how I did it, don't hesitate to connect with me. I'm happy to talk!</p>
     </div>
   </div>
 </div>
