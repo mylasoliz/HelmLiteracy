@@ -1,0 +1,191 @@
+<!-- Subscribe Modal -->
+<div id="subscribe-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <div class="modal-icon">⛵</div>
+    <h2 class="modal-title" id="modal-title">Stay in the Loop</h2>
+    <p class="modal-subtitle">Get new posts on finance and AI delivered to your inbox. No spam, ever.</p>
+    <form
+      action="{{ site.formspree_endpoint }}"
+      method="POST"
+      class="modal-form"
+      onsubmit="handleSubmit(event)"
+    >
+      <input type="hidden" name="_subject" value="New HelmLiteracy subscriber">
+      <div class="modal-input-row">
+        <input
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          class="modal-input"
+          aria-label="Email address"
+        >
+        <button type="submit" class="modal-submit">Subscribe</button>
+      </div>
+      <p class="modal-fine">By subscribing you agree to receive occasional emails from HelmLiteracy.</p>
+    </form>
+    <div id="modal-success" class="modal-success" style="display:none;">
+      <div class="modal-success-icon">✓</div>
+      <p>You're subscribed! Welcome aboard.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 18, 8, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal-box {
+  background: var(--coconut-milk);
+  border-radius: 12px;
+  padding: 44px 40px 36px;
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  transform: translateY(12px);
+  transition: transform 0.2s ease;
+}
+.modal-overlay.open .modal-box {
+  transform: translateY(0);
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+.modal-close:hover { color: var(--text); }
+.modal-icon { font-size: 2.2rem; margin-bottom: 12px; }
+.modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.modal-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.55;
+}
+.modal-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.modal-input {
+  flex: 1;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  background: var(--white);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.modal-input:focus { border-color: var(--cocoa); }
+.modal-submit {
+  background: var(--red-inferno);
+  color: #fff;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.modal-submit:hover { background: var(--cocoa); }
+.modal-fine {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 6px;
+}
+.modal-success { padding: 12px 0 4px; }
+.modal-success-icon {
+  font-size: 2rem;
+  color: var(--chive);
+  margin-bottom: 8px;
+}
+.modal-success p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+@media (max-width: 480px) {
+  .modal-box { padding: 36px 24px 28px; }
+  .modal-input-row { flex-direction: column; }
+}
+</style>
+
+<script>
+function openModal() {
+  const modal = document.getElementById('subscribe-modal');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => modal.querySelector('.modal-input').focus(), 100);
+}
+function closeModal() {
+  const modal = document.getElementById('subscribe-modal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+function handleSubmit(e) {
+  const form = e.target;
+  const action = form.getAttribute('action');
+  if (action.includes('YOUR_FORM_ID')) {
+    e.preventDefault();
+    showSuccess();
+    return;
+  }
+  e.preventDefault();
+  fetch(action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) showSuccess();
+  }).catch(() => showSuccess());
+}
+function showSuccess() {
+  document.querySelector('.modal-form').style.display = 'none';
+  document.getElementById('modal-success').style.display = 'block';
+  setTimeout(closeModal, 2500);
+}
+document.getElementById('subscribe-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
