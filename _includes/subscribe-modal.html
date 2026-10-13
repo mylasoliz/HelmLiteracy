@@ -23,6 +23,7 @@
         <button type="submit" class="modal-submit">Subscribe</button>
       </div>
       <p class="modal-fine">By subscribing you agree to receive occasional emails from HelmLiteracy.</p>
+      <p id="modal-error" class="modal-error" style="display:none;">Something went wrong. Please try again.</p>
     </form>
     <div id="modal-success" class="modal-success" style="display:none;">
       <div class="modal-success-icon">✓</div>
@@ -128,6 +129,11 @@
   color: var(--text-light);
   margin-top: 6px;
 }
+.modal-error {
+  font-size: 0.8rem;
+  color: var(--red-inferno);
+  margin-top: 8px;
+}
 .modal-success { padding: 12px 0 4px; }
 .modal-success-icon {
   font-size: 2rem;
@@ -168,13 +174,18 @@ function handleSubmit(e) {
     return;
   }
   e.preventDefault();
+  document.getElementById('modal-error').style.display = 'none';
   fetch(action, {
     method: 'POST',
     body: new FormData(form),
     headers: { 'Accept': 'application/json' }
   }).then(r => {
     if (r.ok) showSuccess();
-  }).catch(() => showSuccess());
+    else showError();
+  }).catch(() => showError());
+}
+function showError() {
+  document.getElementById('modal-error').style.display = 'block';
 }
 function showSuccess() {
   document.querySelector('.modal-form').style.display = 'none';

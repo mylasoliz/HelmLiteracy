@@ -5,16 +5,16 @@ date: 2026-06-25
 category: AI Tools
 tags: [AI, ChatGPT, Claude, productivity, prompting]
 read_time: 8
-excerpt: "AI tools can save you hours every week — but they can also confidently give you wrong information. Here's how to get the most out of them while avoiding the pitfalls."
+excerpt: "AI tools can save you hours every week, but they can also confidently give you wrong information. Here's how to get the most out of them while avoiding the pitfalls."
 ---
 
 AI tools like ChatGPT, Claude, and Gemini have gone from novelty to genuinely useful in the span of a couple of years. People are using them to draft emails, debug code, summarize documents, brainstorm ideas, and learn new skills.
 
-But there's a real risk of over-trusting them. These systems are trained to produce fluent, confident-sounding text — even when they're wrong. Knowing how to use them well means understanding both their strengths and their failure modes.
+But there's a real risk of over-trusting them. These systems are trained to produce fluent, confident-sounding text, even when they're wrong. Knowing how to use them well means understanding both their strengths and their failure modes.
 
 ## What AI Tools Are Actually Good At
 
-**Writing and editing.** AI is remarkably good at drafting, rewriting, summarizing, and adjusting tone. Give it a rough draft and ask it to make it clearer, shorter, or more professional — the results are usually excellent.
+**Writing and editing.** AI is remarkably good at drafting, rewriting, summarizing, and adjusting tone. Give it a rough draft and ask it to make it clearer, shorter, or more professional. The results are usually excellent.
 
 **Explaining concepts.** Need to understand how a mortgage amortization schedule works, or what a put option is, or how photosynthesis happens? AI tools are excellent tutors. They can explain things at whatever level of detail you want, answer follow-up questions, and give examples.
 
@@ -26,13 +26,13 @@ But there's a real risk of over-trusting them. These systems are trained to prod
 
 ## What AI Tools Get Wrong
 
-**Facts, especially specific ones.** Dates, statistics, names, citations — AI tools can and do make these up. This is called "hallucination," and it's not a bug that's going away soon; it's a fundamental limitation of how these systems work.
+**Facts, especially specific ones.** Dates, statistics, names, citations: AI tools can and do make these up. This is called "hallucination," and it's not a bug that's going away soon; it's a fundamental limitation of how these systems work.
 
 **Recent events.** Every AI has a knowledge cutoff date. It doesn't know what happened last month unless you tell it.
 
 **Math.** Counterintuitively, many large language models struggle with multi-step arithmetic. They can set up a problem correctly and then miscalculate it.
 
-**Confidently wrong is dangerous.** The biggest risk isn't that AI gives you a hedged, uncertain answer you know to take with a grain of salt — it's that it gives you a polished, authoritative-sounding wrong answer you trust completely.
+**Confidently wrong is dangerous.** The biggest risk isn't that AI gives you a hedged, uncertain answer you know to take with a grain of salt. It's that it gives you a polished, authoritative-sounding wrong answer you trust completely.
 
 ## How to Prompt Better
 
@@ -60,13 +60,13 @@ This surfaces uncertainty that would otherwise stay hidden.
 
 Treat the first response as a draft. Common follow-up prompts:
 - *"Make this shorter and more direct"*
-- *"The second paragraph is too technical — simplify it"*
-- *"This sounds too formal — make it conversational"*
+- *"The second paragraph is too technical. Simplify it"*
+- *"This sounds too formal. Make it conversational"*
 - *"What's a counterargument to this?"*
 
 ## The Verification Habit
 
-For anything factual — especially anything you'll repeat, publish, or act on — verify it from a primary source.
+For anything factual (especially anything you'll repeat, publish, or act on), verify it from a primary source.
 
 A good workflow:
 1. Ask the AI to explain or summarize something
@@ -96,4 +96,4 @@ The sweet spot is using AI to build your conceptual understanding, then verifyin
 
 ---
 
-Think of AI as a very well-read research assistant who works 24/7, never gets tired, and occasionally makes things up. Incredibly useful — as long as you stay in the driver's seat.
+Think of AI as a very well-read research assistant who works 24/7, never gets tired, and occasionally makes things up. Incredibly useful, as long as you stay in the driver's seat.

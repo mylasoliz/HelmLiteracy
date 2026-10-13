@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Categories
+title: Archive
 permalink: /categories/
 ---
 
 <div class="page-full">
   <header class="page-header">
     <div class="container">
-      <h1 class="page-title">Categories</h1>
+      <h1 class="page-title">Archive</h1>
     </div>
   </header>
 

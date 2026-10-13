@@ -49,9 +49,9 @@ layout: default
         {% if featured.category %}
         <div class="featured-category">{{ featured.category }}</div>
         {% endif %}
-        <h1 class="featured-title">
+        <h2 class="featured-title">
           <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
-        </h1>
+        </h2>
         <p class="featured-excerpt">{{ featured.excerpt | strip_html }}</p>
         <div class="featured-meta">
           <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: "%-d %b %Y" }}</time>
@@ -65,7 +65,7 @@ layout: default
   <!-- Right: Most Popular sidebar -->
   <div class="col-right">
     <div class="sidebar-header">
-      <span class="sidebar-title">Most Popular</span>
+      <span class="sidebar-title">Latest</span>
       <a href="{{ '/categories' | relative_url }}" class="sidebar-view-all">View All</a>
     </div>
     {% for post in sidebar_posts %}

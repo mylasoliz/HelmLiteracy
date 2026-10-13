@@ -89,14 +89,6 @@ img { max-width: 100%; height: auto; display: block; }
   flex: 1;
   justify-content: flex-end;
 }
-.header-icon {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: color 0.15s;
-}
-.header-icon:hover { color: var(--accent); }
 .btn-subscribe {
   background: var(--accent);
   color: #fff;
